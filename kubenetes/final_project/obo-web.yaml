@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: obo-web
+  name: obo-web
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: obo-web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: obo-web
+    spec:
+      containers:
+        - image: tuenguyen2910/techmaster-obo-web
+          name: techmaster-obo-web
+          ports:
+          - containerPort: 8080
+          envFrom:
+          - configMapRef:
+              name: obo-web-config
+          resources: {}
+status: {}
